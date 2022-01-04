@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { FilesService } from './services/files.service';
 import { UsersService } from './services/users.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class AppComponent {
 
   constructor(
     private authService: AuthService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private filesService: FilesService
   ) {
 
   }
@@ -39,18 +41,25 @@ export class AppComponent {
     })
   }
 
-  login() {
-    this.authService.login('daniel@daniel.com', 'danieldaniel')
-      .subscribe(rta => {
-        console.log(rta.access_token);
-        this.token = rta.access_token;
-      });
-  }
+  // login() {
+  //   this.authService.login('daniel@daniel.com', 'danieldaniel')
+  //     .subscribe(rta => {
+  //       console.log(rta.access_token);
+  //       this.token = rta.access_token;
+  //     });
+  // }
 
-  getProfile() {
-    this.authService.getProfile()
-    .subscribe(profile=> {
-      console.log(profile)
+  // getProfile() {
+  //   this.authService.getProfile()
+  //   .subscribe(profile=> {
+  //     console.log(profile)
+  //   })
+  // }
+
+  downloadPdf() {
+    this.filesService.getFile('my-pdf', 'https://young-sands-07814.herokuapp.com/api/files/dummy.pdf', 'application/pdf')
+    .subscribe(file => {
+
     })
   }
 
