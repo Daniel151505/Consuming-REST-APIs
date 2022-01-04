@@ -2,6 +2,11 @@
 <button (click)="createUser()">Create user</button>
 
 <button (click)="downloadPdf()">Descargar PDF</button>
+
+<p>
+  <input type="file" (change)="onUpload($event)" >
+  <img *ngIf="imgRta" [src]="imgRta" alt="">
+</p>
 <hr>
 <!-- <button (click)="login()">Login</button>
 <button (click)="getProfile()">Get Profile</button> -->

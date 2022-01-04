@@ -12,6 +12,7 @@ export class AppComponent {
   imgParent = '';
   showImg = true;
   token = '';
+  imgRta = '';
 
   constructor(
     private authService: AuthService,
@@ -61,6 +62,17 @@ export class AppComponent {
     .subscribe(file => {
 
     })
+  }
+
+  onUpload(event: Event) {
+    const element = event.target as HTMLInputElement;
+    const file = element.files?.item(0);
+    if(file) {
+      this.filesService.uploadFile(file)
+      .subscribe(rta => {
+      this.imgRta = rta.location;
+      });
+    }
   }
 
 }
