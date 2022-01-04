@@ -1,0 +1,26 @@
+import { environment } from 'src/environments/environment';
+
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { CreateUsertDTO, User } from '../models/user.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UsersService {
+
+  private apiUrl = `${environment.API_URL}/api/users`;
+
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  create(dto: CreateUsertDTO) {
+    return this.http.post(this.apiUrl, dto)
+  }
+
+  getAll() {
+    return this.http.get<User[]>(this.apiUrl);
+  }
+
+}
